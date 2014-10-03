@@ -53,10 +53,10 @@ public class Number extends Activity implements OnClickListener{
 		        public void run() {
 
 		            HttpClient httpclient = new DefaultHttpClient();
-		            HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/verification_codes");
+		            HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/users/create");
 		            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		    		pairs.add(new BasicNameValuePair("name", "mark"));
-		    		pairs.add(new BasicNameValuePair("mobile_number", "+639166456537"));
+		    		pairs.add(new BasicNameValuePair("user[name]", "mark"));
+		    		pairs.add(new BasicNameValuePair("user[mobile_number]", "+639166456537"));
 		            try {
 		            	httppost.setEntity(new UrlEncodedFormEntity(pairs));
 						httpclient.execute(httppost);
