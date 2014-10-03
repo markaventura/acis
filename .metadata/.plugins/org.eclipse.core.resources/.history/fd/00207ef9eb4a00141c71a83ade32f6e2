@@ -57,6 +57,7 @@ public class Number extends Activity implements OnClickListener{
 		            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		    		pairs.add(new BasicNameValuePair("name", "mark"));
 		    		pairs.add(new BasicNameValuePair("mobile_number", "+639166456537"));
+		    		
 		            try {
 		            	httppost.setEntity(new UrlEncodedFormEntity(pairs));
 						httpclient.execute(httppost);
@@ -67,10 +68,10 @@ public class Number extends Activity implements OnClickListener{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+
 		        }
 		    });
 		    t.start();
-		    
 			Intent verification = new Intent(Number.this, Verification.class);
 			verification.putExtra("number", txtNumber.getText().toString());
 			verification.putExtra("name", name);

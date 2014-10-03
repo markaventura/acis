@@ -37,8 +37,29 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		Intent a = new Intent(MainActivity.this, Name.class);
-		startActivity(a);
+		try {
+			
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs.add(new BasicNameValuePair("name", "mark"));
+			nameValuePairs.add(new BasicNameValuePair("mobile_number", "09166456537"));
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			HttpResponse response = httpclient.execute(httppost);
+			
+			String responseBody = EntityUtils.toString(response.getEntity());
+			Toast.makeText(getApplicationContext(), responseBody, Toast.LENGTH_SHORT).show();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		Intent a = new Intent(MainActivity.this, Name.class);
+//		startActivity(a);
 	}
 
 	@Override
