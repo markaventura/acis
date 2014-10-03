@@ -101,7 +101,6 @@ public class Information extends Activity implements OnClickListener{
 		            HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/profiles/create_profile");
 		            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		            
-		            pairs.add(new BasicNameValuePair("profile[name]", name.getText().toString()));
 		    		pairs.add(new BasicNameValuePair("profile[email]", email.getText().toString()));
 		    		pairs.add(new BasicNameValuePair("profile[company]", company.getText().toString()));
 		    		pairs.add(new BasicNameValuePair("profile[job_title]", url.getText().toString()));

@@ -98,14 +98,13 @@ public class Information extends Activity implements OnClickListener{
                             Secure.ANDROID_ID);
 
 		            HttpClient httpclient = new DefaultHttpClient();
-		            HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/profiles/create_profile");
+		            HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/profile/create_profile");
 		            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		            
-		            pairs.add(new BasicNameValuePair("profile[name]", name.getText().toString()));
+
 		    		pairs.add(new BasicNameValuePair("profile[email]", email.getText().toString()));
 		    		pairs.add(new BasicNameValuePair("profile[company]", company.getText().toString()));
 		    		pairs.add(new BasicNameValuePair("profile[job_title]", url.getText().toString()));
-		    		pairs.add(new BasicNameValuePair("profile[website]", title.getText().toString()));
+		    		pairs.add(new BasicNameValuePair("profile[website_url]", title.getText().toString()));
 		    		
 		            try {
 		            	httppost.setEntity(new UrlEncodedFormEntity(pairs));
