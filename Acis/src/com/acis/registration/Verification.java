@@ -28,8 +28,7 @@ public class Verification extends Activity implements OnClickListener{
 		name = extras.getString("name");
 		number = extras.getString("number");
 		
-		Toast.makeText(getApplicationContext(), name, Toast.LENGTH_LONG).show();
-		Toast.makeText(getApplicationContext(), number, Toast.LENGTH_LONG).show();
+		
 	}
 
 	@Override

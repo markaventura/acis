@@ -1,41 +1,40 @@
 package com.acis.main;
 
-import java.util.Timer;
-
-import android.app.Activity;
-import com.sourcepad.acis.R;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.widget.Toast;
 
 public class Receiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		MyPhoneStateListener phoneListener=new MyPhoneStateListener();
-	    TelephonyManager telephony = (TelephonyManager) 
-	    context.getSystemService(Context.TELEPHONY_SERVICE);
+	    TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+	    
+	    Toast.makeText(context, "sdsds", Toast.LENGTH_SHORT).show();
 	    telephony.listen(phoneListener,PhoneStateListener.LISTEN_CALL_STATE);
+	    
 	}
 	
 	public class MyPhoneStateListener extends PhoneStateListener {
-		  public void onCallStateChanged(int state,String incomingNumber){
-		  switch(state){
-		    case TelephonyManager.CALL_STATE_IDLE:
-		      Log.d("DEBUG", "IDLE");
-		    break;
-		    case TelephonyManager.CALL_STATE_OFFHOOK:
-		      Log.d("DEBUG", "OFFHOOK");
-		    break;
-		    case TelephonyManager.CALL_STATE_RINGING:
-		      Log.d("DEBUG", "RINGING");
-		    break;
-		    }
-		  } 
-		}
+	  public void onCallStateChanged(int state,String incomingNumber){
+	  switch(state){
+	    case TelephonyManager.CALL_STATE_IDLE:
+	      Log.d("DEBUG", "IDLE");
+	    break;
+	    case TelephonyManager.CALL_STATE_OFFHOOK:
+	      Log.d("DEBUG", "OFFHOOK");
+	    break;
+	    case TelephonyManager.CALL_STATE_RINGING:
+	      Log.d("DEBUG", "RINGING");
+	    break;
+	    }
+	  } 
+	}
 
 
 	
