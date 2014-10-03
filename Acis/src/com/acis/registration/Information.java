@@ -12,6 +12,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.acis.main.MainActivity;
 import com.sourcepad.acis.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -51,6 +52,7 @@ public class Information extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.information);
+
 		
 		number = (TextView) findViewById(R.id.number);
 		name = (TextView) findViewById(R.id.name);
@@ -68,7 +70,7 @@ public class Information extends Activity implements OnClickListener{
 		userName = extras.getString("name");
 		userNumber = extras.getString("number");
 		
-		response = extras.getString("response");
+		//response = extras.getString("response");
 		
 		number.setText(userNumber);
 		name.setText(userName);
@@ -82,7 +84,6 @@ public class Information extends Activity implements OnClickListener{
 		saveBtn = (Button) findViewById(R.id.saveBtn);
 		saveBtn.setOnClickListener(this);
 		
-		Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
 	}
 
 
@@ -101,6 +102,8 @@ public class Information extends Activity implements OnClickListener{
 		            HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/profiles/create_profile");
 		            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		            
+    			    pairs.add(new BasicNameValuePair("access_token", MainActivity.accessToken));
+    			    pairs.add(new BasicNameValuePair("device_token", android_id));
 		            pairs.add(new BasicNameValuePair("profile[name]", name.getText().toString()));
 		    		pairs.add(new BasicNameValuePair("profile[email]", email.getText().toString()));
 		    		pairs.add(new BasicNameValuePair("profile[company]", company.getText().toString()));

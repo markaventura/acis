@@ -26,6 +26,7 @@
         <activity android:name="com.acis.registration.Number"></activity>
         <activity android:name="com.acis.registration.Verification"></activity>
         <activity android:name="com.acis.registration.Information"></activity>
+        <activity android:name="com.acis.registration.Profile"></activity>
         <receiver android:name="com.acis.main.Receiver">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE"/>
