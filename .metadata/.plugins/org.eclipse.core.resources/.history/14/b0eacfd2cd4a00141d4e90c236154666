@@ -1,0 +1,32 @@
+package com.acis.registration;
+
+import com.sourcepad.acis.R;
+
+import android.app.Activity;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class Information extends Activity implements OnClickListener{
+	
+	TextView number;
+	TextView name;
+	EditText email;
+	EditText company;
+	EditText title;
+	EditText url;
+	
+	@Override
+	public void onClick(View v) {
+		number = (TextView) findViewById(R.id.number);
+		name = (TextView) findViewById(R.id.name);
+		
+		email = (EditText) email;
+		company = (EditText) company;
+		title = (EditText) title;
+		url = (EditText) url;
+		
+	}
+
+}

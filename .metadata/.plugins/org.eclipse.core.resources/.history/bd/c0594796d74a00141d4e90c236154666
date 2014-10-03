@@ -1,0 +1,19 @@
+package com.acis.main;
+
+import java.util.Timer;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.telephony.TelephonyManager;
+
+public class Receiver extends BroadcastReceiver{
+	
+	Timer timer;
+	
+	@Override
+	public void onReceive(Context arg0, Intent arg1) {
+		TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+	}
+
+}

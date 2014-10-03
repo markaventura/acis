@@ -1,0 +1,20 @@
+package com.acis.registration;
+
+import android.app.Activity;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class Information extends Activity implements OnClickListener{
+	
+	TextView number, name;
+	EditText email, company, title, url;
+	
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

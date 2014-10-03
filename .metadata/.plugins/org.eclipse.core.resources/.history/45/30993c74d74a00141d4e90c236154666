@@ -1,0 +1,38 @@
+package com.acis.main;
+
+import java.util.Timer;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
+public class Receiver extends BroadcastReceiver{
+	
+	Timer timer;
+	
+	@Override
+	public void onReceive(Context arg0, Intent arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void pollForCallStatus() {
+	    timer.scheduleAtFixedRate(new TimerTask() {
+	        @Override
+	        public void run() {
+	            Log.d("Poll", Integer.toString(telephonyManager.getCallState()));
+	            switch (telephonyManager.getCallState()){
+	                case TelephonyManager.CALL_STATE_RINGING:
+	                    Log.d("CallService", "ringing");
+	                    break;
+	                case TelephonyManager.CALL_STATE_OFFHOOK:
+	                    callStart();
+	                    break;
+	                case TelephonyManager.CALL_STATE_IDLE:
+	                    callEnd();
+	                    break;
+	            }
+	        }
+	    }, 0, 1000);
+	}
+}

@@ -1,0 +1,16 @@
+package com.sourcepad.registration;
+
+import com.sourcepad.acis.R;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class Name extends Activity{
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.name);
+	}
+	
+}

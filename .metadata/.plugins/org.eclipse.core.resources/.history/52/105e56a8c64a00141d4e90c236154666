@@ -1,0 +1,19 @@
+package com.acis.registration;
+
+import com.sourcepad.acis.R;
+import android.app.Activity;
+import android.os.Bundle;
+
+public class Number extends Activity{
+	
+	Bundle extras;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.number);
+		
+		extras = getIntent().getExtras();
+	}
+
+}

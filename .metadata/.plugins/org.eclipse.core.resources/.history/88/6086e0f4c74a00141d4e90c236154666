@@ -1,0 +1,31 @@
+package com.acis.registration;
+
+import com.sourcepad.acis.R;
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class Number extends Activity{
+	
+	Bundle extras;
+	Button buttonNext;
+	EditText txtName;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.number);
+		
+		buttonNext = (Button) findViewById(R.id.next);
+		buttonNext.setOnClickListener(this);
+		
+		txtName = (EditText) findViewById(R.id.name);
+		
+		extras = getIntent().getExtras();
+		
+		Toast.makeText(getApplicationContext(), extras.getString("name"), Toast.LENGTH_LONG).show();
+	}
+
+}

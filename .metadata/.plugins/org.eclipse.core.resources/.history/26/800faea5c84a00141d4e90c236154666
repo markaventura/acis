@@ -1,0 +1,25 @@
+package com.acis.registration;
+
+import com.sourcepad.acis.R;
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.Toast;
+
+public class Verification extends Activity{
+	
+	Bundle extras;
+	String name, number;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.verification);
+		
+		extras = getIntent().getExtras();
+		name = extras.getString("name");
+		number = extras.getString("number");
+		
+		Toast.makeText(getApplicationContext(), name, Toast.LENGTH_LONG);
+	}
+
+}

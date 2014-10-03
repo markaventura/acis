@@ -1,0 +1,5 @@
+package com.sourcepad.registration;
+
+public class Name extends Activity{
+
+}
