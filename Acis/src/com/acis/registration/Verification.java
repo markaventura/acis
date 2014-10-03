@@ -20,6 +20,7 @@ import com.sourcepad.acis.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings.Secure;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -61,8 +62,12 @@ public class Verification extends Activity implements OnClickListener{
 		        public void run() { 
 		        	HttpClient Client = new DefaultHttpClient();
 		        	HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/verification_codes/check_verification");
-
+		        	
+		        	String android_id = Secure.getString(getApplicationContext().getContentResolver(),
+                            Secure.ANDROID_ID);
+		        	
     			    List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+    			    pairs.add(new BasicNameValuePair("device_token", android_id));
 		    		pairs.add(new BasicNameValuePair("mobile_number", number));
 		    		pairs.add(new BasicNameValuePair("code", code.getText().toString()));
 

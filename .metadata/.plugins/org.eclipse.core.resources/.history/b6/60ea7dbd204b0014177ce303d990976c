@@ -1,0 +1,43 @@
+package com.acis.main;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
+import android.util.Log;
+import android.widget.Toast;
+
+public class Receiver extends BroadcastReceiver {
+	Integer prev_state=0;
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		MyPhoneStateListener phoneListener=new MyPhoneStateListener();
+	    TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+	    
+	    
+	    telephony.listen(phoneListener,PhoneStateListener.LISTEN_CALL_STATE);
+	    
+	    Toast.makeText(context, telephony.getCallState(), Toast.LENGTH_LONG).show();
+	    
+	}
+	
+	public class MyPhoneStateListener extends PhoneStateListener {
+	  public void onCallStateChanged(int state,String incomingNumber){
+	  switch(state){
+	    case TelephonyManager.CALL_STATE_IDLE:
+	    	prev_state =1;
+	    break;
+	    case TelephonyManager.CALL_STATE_OFFHOOK:
+	      prev_state =2;
+	    break;
+	    case TelephonyManager.CALL_STATE_RINGING:
+	      prev_state =3;
+	    break;
+	    }
+	  } 
+	}
+
+
+	
+}

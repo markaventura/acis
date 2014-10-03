@@ -1,0 +1,18 @@
+package com.acis.main;
+
+import android.R;
+import android.app.Activity;
+import android.app.AlertDialog.Builder;
+import android.os.Bundle;
+
+public class AlertDialogService extends Activity{
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		AlertDialogService.Builder alertDialogBuilder = new AlertDialogService.Builder(this);
+	}
+
+}

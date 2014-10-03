@@ -1,0 +1,27 @@
+package com.acis.main;
+
+import android.R;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.os.Bundle;
+
+public class AlertDialogService extends Activity{
+	AlertDialog dialog;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		 AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+		    builder.setTitle("Message")
+		        .setMessage("yeah")
+		        .setNeutralButton("OK", null);
+
+		    dialog = builder.create();
+		    
+		 dialog.show();
+	}
+
+}

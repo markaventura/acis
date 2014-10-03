@@ -61,7 +61,7 @@ public class Number extends Activity implements OnClickListener{
 		            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		    		pairs.add(new BasicNameValuePair("name", name));
 		    		pairs.add(new BasicNameValuePair("user[mobile_number]", txtNumber.getText().toString()));
-		    		pairs.add(new BasicNameValuePair("user[device_token]", android_id));
+		    		pairs.add(new BasicNameValuePair("device_token", android_id));
 		    		
 		            try {
 		            	httppost.setEntity(new UrlEncodedFormEntity(pairs));

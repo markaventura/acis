@@ -1,0 +1,54 @@
+package com.acis.main;
+
+import com.acis.registration.Number;
+import com.acis.registration.Verification;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
+import android.util.Log;
+import android.widget.Toast;
+
+public class Receiver extends BroadcastReceiver {
+	Integer prev_state=0;
+	Context context;
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		this.context = context;
+		MyPhoneStateListener phoneListener=new MyPhoneStateListener();
+	    TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+	    Intent verification = new Intent(Receiver.this, Verification.class);
+	    String number = intent.getExtras().getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
+        
+	    String stateStr = intent.getExtras().getString(TelephonyManager.EXTRA_STATE);
+	    Toast.makeText(context, stateStr, Toast.LENGTH_LONG).show(); 
+	    if(stateStr.equals(TelephonyManager.EXTRA_STATE_IDLE)){
+	    	
+			verification.putExtra("number", txtNumber.getText().toString());
+			verification.putExtra("name", name);
+			startActivity(verification);
+        }
+	    
+	}
+	
+	public class MyPhoneStateListener extends PhoneStateListener {
+	  public void onCallStateChanged(int state,String incomingNumber){
+	  switch(state){
+	    case TelephonyManager.CALL_STATE_IDLE:
+//	    	Toast.makeText(context, "yeah", Toast.LENGTH_LONG).show();
+	    break;
+	    case TelephonyManager.CALL_STATE_OFFHOOK:
+//	    	Toast.makeText(context, "asds", Toast.LENGTH_LONG).show();
+	    break;
+	    case TelephonyManager.CALL_STATE_RINGING:
+//	    	Toast.makeText(context, "asasdsds", Toast.LENGTH_LONG).show();
+	    break;
+	    }
+	  } 
+	}
+
+
+	
+}

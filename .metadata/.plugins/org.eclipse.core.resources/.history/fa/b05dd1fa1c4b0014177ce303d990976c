@@ -1,0 +1,20 @@
+package com.acis.main;
+
+import android.app.Activity;
+import android.app.AlertDialog.Builder;
+import android.os.Bundle;
+
+public class AlertDialog extends Activity{
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		AlertDialog ActiveCallDialog = new AlertDialog.Builder(getApplicationContext())
+        .setMessage(R.string.message)                       
+        .setTitle(R.string.title)
+        .setIcon(android.R.drawable.ic_dialog_alert)
+        .show();  
+	}
+
+}
