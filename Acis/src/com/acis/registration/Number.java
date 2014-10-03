@@ -16,6 +16,7 @@ import com.sourcepad.acis.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings.Secure;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -52,11 +53,16 @@ public class Number extends Activity implements OnClickListener{
 		        @Override
 		        public void run() {
 
+		        	String android_id = Secure.getString(getApplicationContext().getContentResolver(),
+                            Secure.ANDROID_ID);
+		        	
 		            HttpClient httpclient = new DefaultHttpClient();
-		            HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/users/create");
+		            HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/users/create_user");
 		            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		    		pairs.add(new BasicNameValuePair("user[name]", "mark"));
-		    		pairs.add(new BasicNameValuePair("user[mobile_number]", "+639166456537"));
+		    		pairs.add(new BasicNameValuePair("name", name));
+		    		pairs.add(new BasicNameValuePair("user[mobile_number]", txtNumber.getText().toString()));
+		    		pairs.add(new BasicNameValuePair("user[device_token]", android_id));
+		    		
 		            try {
 		            	httppost.setEntity(new UrlEncodedFormEntity(pairs));
 						httpclient.execute(httppost);
