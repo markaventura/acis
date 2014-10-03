@@ -24,6 +24,8 @@ import com.acis.registration.Verification;
 import com.sourcepad.acis.R;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings.Secure;
 import android.app.Activity;
 import android.content.Intent;
@@ -47,92 +49,50 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		userState = 2;
-		
+		String responseMessage = "";
 
-//		Intent a = new Intent(MainActivity.this, Information.class);
-//		a.putExtra("number", "");
-//		a.putExtra("name", "");
-//		startActivity(a);			
+		Thread t = new Thread(new Runnable() {
+	        @Override
+	        public void run() { 
+	        	HttpClient Client = new DefaultHttpClient();
+	        	HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/sessions");
 
-	    Thread t = new Thread(new Runnable() {
-	      @Override
-	      public void run() { 
+	        	String android_id = Secure.getString(getApplicationContext().getContentResolver(),
+                        Secure.ANDROID_ID);
+	        	
+			    List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+
+			    pairs.add(new BasicNameValuePair("device_token", android_id));
+
+
+	            try {
+	            	httppost.setEntity(new UrlEncodedFormEntity(pairs));
+	            	HttpResponse response = Client.execute(httppost);
+	            	String responseBody = EntityUtils.toString(response.getEntity());
+	            	JSONObject jsonResponse=new JSONObject(responseBody);
+	            	
+	             	if(jsonResponse.has("message")){
+	            		if(jsonResponse.getString("message").toString() == "User not found"){
+	            			Intent a = new Intent(MainActivity.this, Name.class);
+	            			startActivity(a);
+	            		}
+	            	}
 	
-	      String android_id = Secure.getString(getApplicationContext().getContentResolver(),
-	                  Secure.ANDROID_ID);
-	      
-	      HttpClient Client = new DefaultHttpClient();
-	      HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/users");
-	
-		      List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		      pairs.add(new BasicNameValuePair("device_token", android_id));
+				} catch (ClientProtocolException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	    });
+	    t.start();
 		
-
-		          try {
-		            httppost.setEntity(new UrlEncodedFormEntity(pairs));
-		            HttpResponse response = Client.execute(httppost);
-		            String responseBody = EntityUtils.toString(response.getEntity());
-		            JSONObject jsonResponse=new JSONObject(responseBody);
-		            
-//		            {"success":true,"active":true,"uid":6,"access_token":"o1NQaPReoCy7HC6CWbke"}
-		            
-		            String responseMessage = "";
-		            String status = "";
-		            JSONObject userJson = new JSONObject();
-		            
-		            if(!jsonResponse.getString("message").isEmpty()){
-		            	responseMessage = jsonResponse.getString("message").toString();	
-		            }
-		            	
-		            if(!jsonResponse.getString("active").isEmpty()){
-		              status = jsonResponse.getString("active").toString();	
-		            }
-		            
-		            
-		            
-		            if(!jsonResponse.getString("user").isEmpty()){
-			              status = jsonResponse.getString("active").toString();	
-			          }
-
-	
-		            accessToken = jsonResponse.getString("access_token").toString();
-		            
-		            
-		            if(responseMessage == "User not found"){
-		              Intent a = new Intent(MainActivity.this, Name.class);
-		              startActivity(a);
-		            }
-		            else if(status == "active"){
-		              Intent a = new Intent(MainActivity.this, Information.class);
-		      		  a.putExtra("number",  jsonResponse.getString("mobile_number").toString());
-		    		  a.putExtra("name",  jsonResponse.getString("name").toString());
-		              startActivity(a);                 
-		            }
-		            else{
-		              Intent a = new Intent(MainActivity.this, Verification.class);
-		      		  a.putExtra("number",  jsonResponse.getString("mobile_number").toString());
-		    		  a.putExtra("name",  jsonResponse.getString("name").toString());
-		              startActivity(a);                   
-		            }
-		            
-		           
-		            
-		            
-		
-		
-		    } catch (ClientProtocolException e) {
-		      e.printStackTrace();
-		    } catch (IOException e) {
-		      e.printStackTrace();
-		    } catch (JSONException e) {
-		      // TODO Auto-generated catch block
-		      e.printStackTrace();
-		    }
-		      }
-		  });
-		  t.start();
-		
-
+        
+	         
+        
 	}
 
 	@Override

@@ -61,7 +61,7 @@ public class Number extends Activity implements OnClickListener{
 		            HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/users/create_user");
 		            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		    		pairs.add(new BasicNameValuePair("name", name));
-    			    pairs.add(new BasicNameValuePair("access_token", MainActivity.accessToken));
+    	
     			    pairs.add(new BasicNameValuePair("device_token", android_id));
 		    		pairs.add(new BasicNameValuePair("user[mobile_number]", txtNumber.getText().toString()));
 		    		pairs.add(new BasicNameValuePair("user[device_token]", android_id));
