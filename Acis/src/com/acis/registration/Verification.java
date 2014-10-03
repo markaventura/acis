@@ -1,5 +1,21 @@
 package com.acis.registration;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.sourcepad.acis.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +23,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class Verification extends Activity implements OnClickListener{
@@ -15,6 +32,8 @@ public class Verification extends Activity implements OnClickListener{
 	String name, number;
 	
 	Button buttonNext;
+	
+	EditText code;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +47,8 @@ public class Verification extends Activity implements OnClickListener{
 		name = extras.getString("name");
 		number = extras.getString("number");
 		
+		code = (EditText) findViewById(R.id.code);
+		
 		
 	}
 
@@ -35,11 +56,40 @@ public class Verification extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()){
 		case R.id.next:
-			Intent information = new Intent(Verification.this, Information.class);
-			information.putExtra("number", number);
-			information.putExtra("name", name);
-			startActivity(information);
-			break;
+			Thread t = new Thread(new Runnable() {
+		        @Override
+		        public void run() { 
+		        	HttpClient Client = new DefaultHttpClient();
+		        	HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/verification_codes/check_verification");
+
+    			    List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+		    		pairs.add(new BasicNameValuePair("mobile_number", number));
+		    		pairs.add(new BasicNameValuePair("code", code.getText().toString()));
+
+		            try {
+		            	httppost.setEntity(new UrlEncodedFormEntity(pairs));
+		            	HttpResponse response = Client.execute(httppost);
+		            	String responseBody = EntityUtils.toString(response.getEntity());
+		            	JSONObject jsonResponse=new JSONObject(responseBody);
+		            	
+		            	Intent information = new Intent(Verification.this, Information.class);
+		    			information.putExtra("number", number);
+		    			information.putExtra("name", name);
+		    			information.putExtra("response", jsonResponse.getString("success").toString());
+//		    			if (jsonResponse.getString("success").toString() == "true"){
+	    				startActivity(information);
+//		    			}
+					} catch (ClientProtocolException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        }
+		    });
+		    t.start();
 		}
 	}
 

@@ -25,8 +25,8 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f08000c;
+        public static final int code=0x7f08000b;
         public static final int company=0x7f080003;
-        public static final int editText1=0x7f08000b;
         public static final int email=0x7f080002;
         public static final int imageView1=0x7f080007;
         public static final int name=0x7f080001;
