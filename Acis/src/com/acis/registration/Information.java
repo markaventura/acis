@@ -53,11 +53,15 @@ public class Information extends Activity implements OnClickListener{
 		
 		number = (TextView) findViewById(R.id.number);
 		name = (TextView) findViewById(R.id.name);
+
+
 		
 		email = (EditText) findViewById(R.id.email);
 		company = (EditText) findViewById(R.id.company);
-		title = (EditText) findViewById(R.id.title);
-		url = (EditText) findViewById(R.id.url);
+		title = (EditText) findViewById(R.id.job_title);
+		url = (EditText) findViewById(R.id.website_url);
+		
+
 		
 		extras = getIntent().getExtras();
 		userName = extras.getString("name");
@@ -66,10 +70,10 @@ public class Information extends Activity implements OnClickListener{
 		number.setText(userNumber);
 		name.setText(userName);
 		
-		image = (ImageView) findViewById(R.id.imageView1);
-		
-		upload = (Button) findViewById(R.id.upload);
-		upload.setOnClickListener(this);
+//		image = (ImageView) findViewById(R.id.imageView1);
+//		
+//		upload = (Button) findViewById(R.id.upload);
+//		upload.setOnClickListener(this);
 
 		
 		saveBtn = (Button) findViewById(R.id.saveBtn);
@@ -90,12 +94,14 @@ public class Information extends Activity implements OnClickListener{
                             Secure.ANDROID_ID);
 
 		            HttpClient httpclient = new DefaultHttpClient();
-		            HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/users/create_user");
+		            HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/profile/create_profile");
 		            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		    		pairs.add(new BasicNameValuePair("user[mobile_number]", "+63 92222222"));
-		    		pairs.add(new BasicNameValuePair("user[device_token]", android_id));
-		    		pairs.add(new BasicNameValuePair("profile[name]", "rav"));
-		    		pairs.add(new BasicNameValuePair("profile[name]", "rav"));
+
+		    		pairs.add(new BasicNameValuePair("profile[email]", email.getText().toString()));
+		    		pairs.add(new BasicNameValuePair("profile[company]", company.getText().toString()));
+		    		pairs.add(new BasicNameValuePair("profile[job_title]", url.getText().toString()));
+		    		pairs.add(new BasicNameValuePair("profile[website_url]", title.getText().toString()));
+		    		
 		            try {
 		            	httppost.setEntity(new UrlEncodedFormEntity(pairs));
 						httpclient.execute(httppost);
@@ -112,11 +118,11 @@ public class Information extends Activity implements OnClickListener{
 
 			break;
 
-			case R.id.upload:
-				Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-				photoPickerIntent.setType("image/*");
-				startActivityForResult(photoPickerIntent, SELECT_PHOTO); 
-				break;
+//			case R.id.upload:
+//				Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+//				photoPickerIntent.setType("image/*");
+//				startActivityForResult(photoPickerIntent, SELECT_PHOTO); 
+//				break;
 			
 		}
 	}
