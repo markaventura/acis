@@ -1,7 +1,9 @@
 package com.acis.main;
 
+import com.acis.registration.Information;
 import com.acis.registration.Name;
 import com.acis.registration.Number;
+import com.acis.registration.Verification;
 
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -16,17 +18,28 @@ public class Receiver extends BroadcastReceiver {
 	Integer prev_state=0;
 	AlertDialog dialog;
 	Context context;
+	public static String pNumber = "";
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		this.context = context;
 	    String stateStr = intent.getExtras().getString(TelephonyManager.EXTRA_STATE);
-	    Toast.makeText(context, stateStr, Toast.LENGTH_LONG).show(); 
+	    if(stateStr.equals("RINGING")){
+	    	pNumber = intent.getExtras().getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
+	    }
+	    
+	    Toast.makeText(context, pNumber, Toast.LENGTH_LONG).show(); 
 	    if(stateStr.equals("IDLE")){
 	    	try {
-	    		
-	    		Intent number = new Intent(context, User.class);
-	    		number.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				context.startActivity(number);
+				
+				Intent information = new Intent(context, Information.class);
+				information.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				
+				information.putExtra("number", pNumber);
+				information.putExtra("name", "");
+				information.putExtra("response", "");
+//    			if (jsonResponse.getString("success").toString() == "true"){
+				
+				context.startActivity(information);
 
 			} catch (Exception e) {
 				Log.e("AlarmClock.java", "ERROR: ", e);

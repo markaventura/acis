@@ -10,14 +10,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-public class Name extends Activity implements OnClickListener{
+public class Profile extends Activity implements OnClickListener{
 	
 	Button buttonNext;
 	EditText txtName;
-	Bundle extras;
-	String asds;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,23 +25,11 @@ public class Name extends Activity implements OnClickListener{
 		buttonNext.setOnClickListener(this);
 		
 		txtName = (EditText) findViewById(R.id.name);
-		
-		extras = getIntent().getExtras();
-		asds = extras.getString("response");
-		
-//		Toast.makeText(getApplicationContext(), asds, Toast.LENGTH_LONG).show();
 	}
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()){
-			case R.id.next:
-				Intent number = new Intent(Name.this, Number.class);
-				number.putExtra("name", txtName.getText().toString());
-				startActivity(number);
-				break;
-		}
-		
+
 	}
 	
 }

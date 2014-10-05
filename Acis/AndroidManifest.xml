@@ -10,7 +10,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -27,6 +27,7 @@
         <activity android:name="com.acis.registration.Verification"></activity>
         <activity android:name="com.acis.registration.Information"></activity>
         <activity android:name="com.acis.main.User"></activity>
+        <activity android:name="com.acis.registration.Profile"></activity>
         <receiver android:name="com.acis.main.Receiver">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE"/>
@@ -66,4 +67,5 @@
    <uses-permission android:name="android.permission.SEND_SMS" />
    <uses-permission android:name="android.permission.READ_SMS" />
    <uses-permission android:name="android.permission.WRITE_SMS" />
+   <uses-permission android:name="android.permission.WRITE_CONTACTS" />
 </manifest>

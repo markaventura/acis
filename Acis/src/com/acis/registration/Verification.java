@@ -16,6 +16,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.acis.main.MainActivity;
 import com.sourcepad.acis.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -62,13 +63,16 @@ public class Verification extends Activity implements OnClickListener{
 		        public void run() { 
 		        	HttpClient Client = new DefaultHttpClient();
 		        	HttpPost httppost = new HttpPost("https://40d6b289.ngrok.com/api/verification_codes/check_verification");
-		        	
+
 		        	String android_id = Secure.getString(getApplicationContext().getContentResolver(),
                             Secure.ANDROID_ID);
 		        	
     			    List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+
+    			    pairs.add(new BasicNameValuePair("access_token", MainActivity.accessToken));
     			    pairs.add(new BasicNameValuePair("device_token", android_id));
-		    		pairs.add(new BasicNameValuePair("mobile_number", number));
+    			    pairs.add(new BasicNameValuePair("mobile_number", number));
+		    		
 		    		pairs.add(new BasicNameValuePair("code", code.getText().toString()));
 
 		            try {
