@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Number extends Activity implements OnClickListener{
@@ -29,7 +30,8 @@ public class Number extends Activity implements OnClickListener{
 	Bundle extras;
 	Button buttonNext;
 	EditText txtNumber;
-	String name;
+	TextView txtName;
+	String name, uNumber;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +42,13 @@ public class Number extends Activity implements OnClickListener{
 		buttonNext.setOnClickListener(this);
 		
 		txtNumber = (EditText) findViewById(R.id.number);
+		txtName = (TextView) findViewById(R.id.txtName);
 		
 		extras = getIntent().getExtras();
 		
 		name = extras.getString("name");
+		
+		txtName.setText("Hello, " + name);
 	}
 
 	@Override

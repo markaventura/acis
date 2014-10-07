@@ -4,11 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical" 
     android:background="@drawable/bg" >
+    
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="fill_parent"
+        android:layout_height="224dp"
+        android:gravity="center"
+        android:paddingTop="150dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#CCCCCC"
+        android:textSize="30dip" />
 
     <EditText
         android:id="@+id/code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="190dp"
         android:ems="10" >
 
         <requestFocus />
@@ -16,9 +27,9 @@
 
     <Button
         android:id="@+id/next"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
         android:text="Next" />
 
 </LinearLayout>

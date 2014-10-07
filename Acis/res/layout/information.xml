@@ -3,25 +3,75 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@drawable/bg" >
+    android:background="@drawable/bg"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:text="TextView" />
 
+    <Button
+        android:id="@+id/btnSaveToContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="Save as Contact " />
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/btnSaveToContact"
+        android:text="Save Profile" />
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/number"
+        android:layout_marginTop="15dp"
+        android:text="TextView" />
+
     <EditText
-        android:id="@+id/website_url"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/job_title"
+        android:layout_below="@+id/txtName"
+        android:layout_marginTop="37dp"
         android:ems="10"
-        android:hint="Website URL" />
+        android:hint="Email" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/email"
+        android:ems="10"
+        android:hint="Name" />
+
+    <EditText
+        android:id="@+id/company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/etName"
+        android:ems="10"
+        android:hint="Company" />
 
     <EditText
         android:id="@+id/job_title"
@@ -33,63 +83,12 @@
         android:hint="Job Title" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/website_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/name"
-        android:layout_marginTop="69dp"
+        android:layout_below="@+id/job_title"
         android:ems="10"
-        android:hint="Email" />
-
-    <EditText
-        android:id="@+id/company"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/email"
-        android:ems="10"
-        android:hint="Company"/>
-
-    <EditText
-        android:id="@+id/etName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/name"
-        android:layout_marginTop="29dp"
-        android:ems="10"
-        android:hint="Name" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/saveBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/website_url"
-        android:text="Save Profile" />
-
-    <TextView
-        android:id="@+id/txtName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/number"
-        android:layout_marginTop="16dp"
-        android:text="TextView" />
-
-    <Button
-        android:id="@+id/btnSaveToContact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/saveBtn"
-        android:layout_alignBottom="@+id/saveBtn"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="29dp"
-        android:text="Save as Contact " />
+        android:hint="Website URL" />
 
 </RelativeLayout>

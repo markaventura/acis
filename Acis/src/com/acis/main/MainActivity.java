@@ -103,8 +103,8 @@ public class MainActivity extends Activity {
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Intent a = new Intent(getApplicationContext(), Name.class);
+					startActivity(a);
 				}
 	        }
 	    });

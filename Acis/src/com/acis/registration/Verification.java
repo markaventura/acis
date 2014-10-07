@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Verification extends Activity implements OnClickListener{
@@ -35,6 +36,8 @@ public class Verification extends Activity implements OnClickListener{
 	
 	Button buttonNext;
 	
+	TextView txtName;
+	
 	EditText code;
 	
 	@Override
@@ -43,6 +46,8 @@ public class Verification extends Activity implements OnClickListener{
 		setContentView(R.layout.verification);
 		
 		buttonNext = (Button) findViewById(R.id.next);
+		txtName = (TextView) findViewById(R.id.txtName);
+		
 		buttonNext.setOnClickListener(this);
 		
 		extras = getIntent().getExtras();
@@ -50,6 +55,8 @@ public class Verification extends Activity implements OnClickListener{
 		number = extras.getString("number");
 		
 		code = (EditText) findViewById(R.id.code);
+		
+		txtName.setText(name + ", we are sending you an SMS to " + number);
 		
 		
 	}
@@ -93,8 +100,12 @@ public class Verification extends Activity implements OnClickListener{
 					} catch (IOException e) {
 						e.printStackTrace();
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						Intent information = new Intent(Verification.this, Information.class);
+		    			information.putExtra("number", number);
+		    			information.putExtra("name", name);
+		    			information.putExtra("response", "");
+//		    			if (jsonResponse.getString("success").toString() == "true"){
+	    				startActivity(information);
 					}
 		        }
 		    });

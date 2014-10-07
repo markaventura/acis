@@ -30,9 +30,6 @@ public class Name extends Activity implements OnClickListener{
 		txtName = (EditText) findViewById(R.id.name);
 		
 		extras = getIntent().getExtras();
-		asds = extras.getString("response");
-		
-//		Toast.makeText(getApplicationContext(), asds, Toast.LENGTH_LONG).show();
 	}
 
 	@Override
